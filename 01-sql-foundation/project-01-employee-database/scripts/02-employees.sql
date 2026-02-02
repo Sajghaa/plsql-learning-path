@@ -42,7 +42,7 @@ COMMENT ON COLUMN employees.dept_id IS 'Department they work in (FK)';
 
 BEGIN
     DBMS_OUTPUT.PUT_LINE('');
-    DBMS_OUTPUT.PUT_LINE('✅ EMPLOYEES TABLE CREATED!');
+    DBMS_OUTPUT.PUT_LINE(' EMPLOYEES TABLE CREATED!');
     DBMS_OUTPUT.PUT_LINE('');
     DBMS_OUTPUT.PUT_LINE('New concept: FOREIGN KEY');
     DBMS_OUTPUT.PUT_LINE('connects employees to departments');
@@ -65,3 +65,32 @@ END;
 
 -- Query 1: All employees
 SELECT * FROM employees;
+
+-- Query2: JOIN with departments
+SELECT e.first_name, e.last_name, e.salary, d.dept_name
+FROM employees e 
+JOIN departments d ON e.dept_id = d.dept_id;
+
+-- Query3: Employee hired in 2023
+SELECT first_name, last_name, hire_date
+FROM employee 
+WHERE EXTRACT(YEAR FROM hire_date) = 2023;
+
+-- Query4: Average salary by department
+SELECT d.dept_name, AVG(e.salary) as avg_salary
+FROM employee e 
+JOIN departments d ON e.dept_id = d.dept_id
+GROUP by d.dept_name;
+
+-- Step6: Today's learning
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('   TODAY''S LEARNING');
+    DBMS_OUTPUT.PUT_LINE('1. FOREIGN KEY concept');
+    DBMS_OUTPUT.PUT_LINE('2. JOIN operations');
+    DBMS_OUTPUT.PUT_LINE('3. DATE data type');
+    DBMS_OUTPUT.PUT_LINE('4. GROUP BY for aggregation');
+    DBMS_OUTPUT.PUT_LINE('');
+    DBMS_OUTPUT.PUT_LINE('   Tomorrow: PROJECTS table');
+END;
+/
