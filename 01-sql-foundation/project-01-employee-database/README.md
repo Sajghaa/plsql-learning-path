@@ -41,5 +41,5 @@ The system manages:
 3. Run scripts in order:
 ```bash
 cd scripts/
-@01-create-schema.sql
-@02-insert-data.sql
+@01-departments.sql
+@02-employees.sql
