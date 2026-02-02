@@ -1,38 +1,38 @@
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('==============================');
+    DBMS_OUTPUT.PUT_LINE('===================================');
     DBMS_OUTPUT.PUT_LINE('DAY 2: EMPLOYEES TABLE');
-    DBMS_OUTPUT.PUT_LINE('==============================');
+    DBMS_OUTPUT.PUT_LINE('===================================');
 END;
 /
 
---Step 1: Drop if exists
+-- Step 1: Drop if exists
 DECLARE
-    total_count NUMBER;
+    table_count NUMBER;
 BEGIN
     SELECT COUNT(*) INTO table_count
-    FROM user_tables
+    FROM user_tables 
     WHERE table_name = 'EMPLOYEES';
-
+    
     IF table_count > 0 THEN
         EXECUTE IMMEDIATE 'DROP TABLE employees';
-        DBMS_OUTPUT.PUT_LINE('Old employees table dropped');
+        DBMS_OUTPUT.PUT_LINE('Old employees table dropped.');
     END IF;
 END;
 /
 
--- Step 2: Create table with FOREIGN KEY
-CREATE TABLE employees(
+-- Step 2: CREATE TABLE with FOREIGN KEY
+CREATE TABLE employees (
     emp_id NUMBER PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    salary NUMBER(10, 2),
+    first_name VARCHAR2(50) NOT NULL,
+    last_name VARCHAR2(50) NOT NULL,
+    email VARCHAR2(100) UNIQUE,
+    salary NUMBER(10,2),
     hire_date DATE,
     dept_id NUMBER,
-
+    
     -- FOREIGN KEY to departments
     CONSTRAINT fk_dept FOREIGN KEY (dept_id)
-         REFERENCES departments(dept_id)
+        REFERENCES departments(dept_id)
 );
 
 -- Step 3: Add comments
@@ -66,26 +66,26 @@ END;
 -- Query 1: All employees
 SELECT * FROM employees;
 
--- Query2: JOIN with departments
+-- Query 2: JOIN with departments
 SELECT e.first_name, e.last_name, e.salary, d.dept_name
-FROM employees e 
+FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id;
 
--- Query3: Employee hired in 2023
+-- Query 3: Employees hired in 2023
 SELECT first_name, last_name, hire_date
-FROM employee 
+FROM employees
 WHERE EXTRACT(YEAR FROM hire_date) = 2023;
 
--- Query4: Average salary by department
+-- Query 4: Average salary by department
 SELECT d.dept_name, AVG(e.salary) as avg_salary
-FROM employee e 
+FROM employees e
 JOIN departments d ON e.dept_id = d.dept_id
-GROUP by d.dept_name;
+GROUP BY d.dept_name;
 
--- Step6: Today's learning
+-- Step 6: Today's learning
 BEGIN
     DBMS_OUTPUT.PUT_LINE('');
-    DBMS_OUTPUT.PUT_LINE('   TODAY''S LEARNING');
+    DBMS_OUTPUT.PUT_LINE('   TODAY''S LEARNING:');
     DBMS_OUTPUT.PUT_LINE('1. FOREIGN KEY concept');
     DBMS_OUTPUT.PUT_LINE('2. JOIN operations');
     DBMS_OUTPUT.PUT_LINE('3. DATE data type');
