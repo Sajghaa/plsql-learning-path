@@ -26,3 +26,8 @@
 - ALTER TABLE modifies existing tables
 - UPDATE changes existing data
 - Adding columns as needed
+
+## Day 6: Testing
+- Complex queries with aggregation
+- LISTAGG for combining text
+- LEFT JOIN vs JOIN
