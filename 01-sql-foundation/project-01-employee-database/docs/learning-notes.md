@@ -16,3 +16,8 @@
 - More practice with foreign keys
 - NULL values in databases
 - Working with date ranges
+
+## Day 4: Bridge Table
+- Many-to-many relationships
+- Bridge tables have composite primary keys
+- Complex JOINs with multiple tables
