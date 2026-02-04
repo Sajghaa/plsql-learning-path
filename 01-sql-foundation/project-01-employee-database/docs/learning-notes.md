@@ -11,3 +11,8 @@
 - JOIN combines data from multiple tables
 - DATE data type for dates
 - GROUP BY for calculations (AVG, SUM)
+
+## Day 3: Projects Table
+- More practice with foreign keys
+- NULL values in databases
+- Working with date ranges
