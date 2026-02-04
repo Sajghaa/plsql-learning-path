@@ -18,7 +18,7 @@ COMMIT;
 
 -- Practice queries
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('📝 LOCATION QUERIES:');
+    DBMS_OUTPUT.PUT_LINE(' LOCATION QUERIES:');
 END;
 /
 
@@ -34,6 +34,6 @@ JOIN departments d ON e.dept_id = d.dept_id;
 
 BEGIN
     DBMS_OUTPUT.PUT_LINE('');
-    DBMS_OUTPUT.PUT_LINE('🎓 LEARNED: ALTER TABLE and UPDATE');
+    DBMS_OUTPUT.PUT_LINE(' LEARNED: ALTER TABLE and UPDATE');
 END;
 /

@@ -21,3 +21,8 @@
 - Many-to-many relationships
 - Bridge tables have composite primary keys
 - Complex JOINs with multiple tables
+
+## Day 5: Locations
+- ALTER TABLE modifies existing tables
+- UPDATE changes existing data
+- Adding columns as needed
