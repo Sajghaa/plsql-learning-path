@@ -6,7 +6,7 @@
 **Student ID**: 27879 
 **Group**: C 
 **Submission Date**: 02/06/2026  
-**Repository**: [Your GitHub URL]
+**Repository**: https://github.com/Sajghaa/plsql-learning-path/tree/main/03-school-projects/plsql_window_functions_27879_SHEMA_Serge
 
 ---
 
