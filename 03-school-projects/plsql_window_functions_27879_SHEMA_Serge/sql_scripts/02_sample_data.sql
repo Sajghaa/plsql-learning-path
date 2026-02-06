@@ -109,5 +109,5 @@ INSERT ALL
        VALUES (4, 4, 6, TO_DATE('2024-01-28','YYYY-MM-DD'), 1, 89.99, 'Debit Card')
   INTO orders (order_id, customer_id, product_id, order_date, quantity, amount, payment_method)
        VALUES (5, 5, 11, TO_DATE('2024-01-30','YYYY-MM-DD'), 3, 179.97, 'Credit Card')
-  -- Add the rest of the 50 orders following same format…
+ 
 SELECT * FROM dual;
