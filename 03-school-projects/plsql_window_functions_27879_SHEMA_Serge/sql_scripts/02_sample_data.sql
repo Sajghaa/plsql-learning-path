@@ -1,11 +1,5 @@
--- ============================================
--- 02_sample_data_oracle.sql
--- Sample Data for Oracle
--- ============================================
-
--- =========================
 -- Insert Customers
--- =========================
+
 INSERT ALL
   INTO customers (customer_id, first_name, last_name, email, region, signup_date, customer_tier)
        VALUES (1, 'Sarah', 'Diana', 'sarah@gmail.com','North America', TO_DATE('2024-01-15','YYYY-MM-DD'),'Premium')
@@ -57,9 +51,8 @@ INSERT ALL
        VALUES (24, 'Kigeli', 'Francois', 'kigeli@gmail.com','Africa', TO_DATE('2024-07-22','YYYY-MM-DD'),'Standard')
 SELECT * FROM dual;
 
--- =========================
 -- Insert Products
--- =========================
+
 INSERT ALL
   INTO products (product_id, product_name, category, price, cost, stock_quantity)
        VALUES (1, 'Smartphone X', 'Electronics', 899.99, 450.00, 50)
@@ -103,9 +96,8 @@ INSERT ALL
        VALUES (20, 'Winter Jacket', 'Clothing', 149.99, 60.00, 25)
 SELECT * FROM dual;
 
--- =========================
 -- Insert Orders
--- =========================
+
 INSERT ALL
   INTO orders (order_id, customer_id, product_id, order_date, quantity, amount, payment_method)
        VALUES (1, 1, 1, TO_DATE('2024-01-20','YYYY-MM-DD'), 1, 899.99, 'Credit Card')
