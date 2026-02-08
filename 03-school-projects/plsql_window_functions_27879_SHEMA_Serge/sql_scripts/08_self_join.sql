@@ -1,19 +1,42 @@
--- FULL OUTER JOIN: Compare customers and products including unmatched records
-SELECT 
-    COALESCE(c.customer_id, 0) AS customer_id,
-    COALESCE(c.first_name || ' ' || c.last_name, 'NO CUSTOMER') AS customer_name,
-    COALESCE(c.region, 'N/A') AS region,
-    COALESCE(p.product_id, 0) AS product_id,
-    COALESCE(p.product_name, 'NO PRODUCT') AS product_name,
-    COALESCE(p.category, 'N/A') AS category,
-    o.order_id,
-    o.order_date,
-    o.quantity,
-    o.amount
-FROM customers c
-FULL OUTER JOIN orders o ON c.customer_id = o.customer_id
-FULL OUTER JOIN products p ON o.product_id = p.product_id
-WHERE c.customer_id IS NULL 
-   OR p.product_id IS NULL 
-   OR o.order_id IS NULL
-ORDER BY c.customer_id NULLS LAST, p.product_id NULLS LAST;
+-- SELF JOIN: Customers Within the Same Region
+-- Purpose: Compare customers in the same region
+
+SELECT
+    c1.customer_id AS customer1_id,
+    c1.first_name || ' ' || c1.last_name AS customer1_name,
+    c1.customer_tier AS customer1_tier,
+
+    c2.customer_id AS customer2_id,
+    c2.first_name || ' ' || c2.last_name AS customer2_name,
+    c2.customer_tier AS customer2_tier,
+
+    c1.region,
+
+    COUNT(DISTINCT o1.order_id) AS orders_customer1,
+    COUNT(DISTINCT o2.order_id) AS orders_customer2,
+
+    NVL(SUM(o1.amount), 0) AS total_spent_customer1,
+    NVL(SUM(o2.amount), 0) AS total_spent_customer2
+
+FROM customers c1
+JOIN customers c2
+    ON c1.region = c2.region
+   AND c1.customer_id < c2.customer_id
+
+LEFT JOIN orders o1
+    ON c1.customer_id = o1.customer_id
+
+LEFT JOIN orders o2
+    ON c2.customer_id = o2.customer_id
+
+-- Example filter 
+WHERE c1.region = 'North America'
+
+GROUP BY
+    c1.customer_id, c1.first_name, c1.last_name, c1.customer_tier,
+    c2.customer_id, c2.first_name, c2.last_name, c2.customer_tier,
+    c1.region
+
+ORDER BY
+    c1.customer_id,
+    c2.customer_id;
