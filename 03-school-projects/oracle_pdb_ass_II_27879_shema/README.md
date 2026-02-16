@@ -99,7 +99,7 @@ WHERE username = 'SHEMA_PLSQLAUCA_27879';
 ##  SQL*Plus Commands Executed
 
 ### Create Temporary PDB
-```
+```sql
 ALTER SYSTEM SET DB_CREATE_FILE_DEST = 'C:\APP\SERGE\PRODUCT\21C\ORADATA\XE' SCOPE = BOTH;
 
 CREATE PLUGGABLE DATABASE sh_to_delete_pdb_27879
@@ -108,18 +108,29 @@ ADMIN USER temp_admin IDENTIFIED BY temp123;
 ALTER SYSTEM SET DB_CREATE_FILE_DEST = '' SCOPE = BOTH;
 ```
 
-### Step 2: Open Temporary PDB
-```
+### Step2: Open Temporary PDB
+```sql
 ALTER PLUGGABLE DATABASE sh_to_delete_pdb_27879 OPEN;
 ```
 
-### Step 3: Verify Temporary PDB Exists
-```
+### Step3: Verify Temporary PDB Exists
+```sql
 SELECT name, open_mode FROM v$pdbs WHERE name LIKE '%TO_DELETE%';
 ```
 
-### Step 4: Close Temporary PDB
-```
+### Step4: Close Temporary PDB
+```sql
 ALTER PLUGGABLE DATABASE sh_to_delete_pdb_27879 CLOSE IMMEDIATE;
+```
+
+### Step5: Delete Temporary PDB Completely
+```sql
+DROP PLUGGABLE DATABASE sh_to_delete_pdb_27879 INCLUDING DATAFILES;
+```
+
+### Step6: Verify Deletion
+```sql
+SELECT name FROM v$pdbs WHERE name LIKE '%TO_DELETE%';
+-- Expected: "no rows selected"
 ```
 
