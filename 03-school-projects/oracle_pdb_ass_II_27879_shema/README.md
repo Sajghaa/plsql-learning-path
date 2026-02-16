@@ -204,7 +204,8 @@ https://localhost:5500/em
 
 | Step | Description | Screenshot |
 |-----------|-------|-------|
-| **1** | **OEM Dashboard Overview** |![Create Temporary PDB](screenshots/task2/02_create_temporary_pdb.png)|
+| **1** | **OEM Dashboard Overview** |![Create Temporary PDB](screenshots/task3/01_dashboard_view.png)|
+| **2** | **OEM Dashboard Overview** |![Create Temporary PDB](screenshots/task3/02_dashboard_view.png)|
  
 # CHALLENGES FACED AD SOLUTIONS
 ## Challenge 1: File Path Errors(ORA-65005)
