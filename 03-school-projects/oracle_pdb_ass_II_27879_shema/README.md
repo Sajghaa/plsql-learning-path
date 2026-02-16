@@ -81,7 +81,7 @@ WHERE username = 'SHEMA_PLSQLAUCA_27879';
 
 | Step | Description | Screenshot |
 |------|------------|------------|
-| **1** | **PDB Creation Successful** | ![Step 1](screenshots/task1/01_pdb_creations.png) |
+| **1** | **PDB Creation Successful** | ![Step 1](screenshots/task1/01_pdb_creation.png) |
 | **2** | **PDB Open State Verification** | ![Step 2](screenshots/task1/02_pdb_open.png) |
 | **3** | **User Creation Inside PDB** | ![Step 3](screenshots/task1/05_create_user.png) |
 | **4** | **User Verification** | ![Step 4](screenshots/task1/07_verification_of_user_creation.png) |
