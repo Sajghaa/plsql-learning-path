@@ -76,3 +76,12 @@ SELECT username, created, account_status
 FROM dba_users 
 WHERE username = 'SHEMA_PLSQLACUA_27879';
 ```
+
+## Task 1 Screenshots
+
+| Step | Description | Screenshot |
+|-----------|-------|-------|
+| **1** | **PDB Creation Successful** |`screenshots/task1/01_pdb_creations.png`|
+| **2** | **PDB Open State Verification** |`screenshots/task1/02_pdb_open.png`|
+| **3** | **User Creation Inside PDB** |`screenshots/task1/05_create_user.png`|
+| **4** | **User Verification** |`screenshots/task1/07_verification_of_user_creation.png`|
