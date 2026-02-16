@@ -214,6 +214,51 @@ ORA-65005: missing or invalid file name pattern for file -
 C:\APP\SERGE\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSTEM01.DBF
 ```
 
+## Challenge 2: Windows Path Formatting in SQL
+**Issue**: Backslashes in Windows paths needed proper escaping in SQL strings, causing syntax errors.
+**Solution**:
+used double backslashes(\\) in SQL strings:
+```sql
+'C:\\APP\\SERGE\\PRODUCT\\21C\\ORADATA\\XE'
+```
+
+## Challenge 3: TNS Name Resolution(ORA-12154)
+**Issue**: PL/SQL Developer could not resolve the connect identifier:
+```text
+ORA-12154: TNS: could not resolve the connect identifier specified
+```
+**Solution**: 
+Used Easy Connect format which bypasses TNS configuration:
+```
+localhost:1521/sh_pdb_27879
+```
+This connects directly without needing tnsnames.ora configuration.
+
+## Challenge 4: OEM Password Recovery
+**Issue**: Forgot SYS Password when trying to log into oracle Enterprise Manager: <br>
+**Solution**: 
+used password from SQL*Plus connected as SYSDBA:
+```bash:
+sqlplus / as sysdba
+```
+```sql
+ALTER USER sys IDENTIFIED BY Oracle123;
+```
+
+## Challenge 5: View Permissions (ORA-00942)
+**Issue**: User lacked permission to query **v$pdbs** view:
+```text
+ORA-00942: table or view does not exist
+```
+**Solution**:
+Used alternative queries that don't require special privileges.
+```sql
+SELECT SYS_CONTEXT('USERENV', 'CON_NAME') FROM DUAL;
+SELECT USER FROM DUAL;
+```
+This conformed PDB name and username without permission issues.
+
+
 ### Screenshot Validation
 The OEM dashboard screenshot confirms:
 ✅ OEM Accessibility: Successfully accessed via HTTPS on port 5500
