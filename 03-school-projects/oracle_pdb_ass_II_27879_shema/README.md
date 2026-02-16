@@ -28,7 +28,7 @@
 |-----------|-------|
 | **PDB Name** | `sh_pdb_27879` |
 | **Admin User** | `admin_pdb` |
-| **Application User** | `shema_plsqlacua_27879` |
+| **Application User** | `shema_plsqlauca_27879` |
 | **Password** | `Oracle123` |
 
 ##  SQL*Plus Commands Executed
@@ -61,20 +61,20 @@ ALTER SESSION SET CONTAINER = sh_pdb_27879;
 
 ### Step6: Create Application User
 ```sql
-CREATE USER shema_plsqlacua_27879 IDENTIFIED BY Oracle123;
+CREATE USER shema_plsqlauca_27879 IDENTIFIED BY Oracle123;
 ```
 
 ### Step7: Grant Required Privileges
 ```sql
-GRANT CREATE SESSION, CREATE TABLE, CREATE PROCEDURE TO shema_plsqlacua_27879;
-GRANT UNLIMITED TABLESPACE TO shema_plsqlacua_27879;
+GRANT CREATE SESSION, CREATE TABLE, CREATE PROCEDURE TO shema_plsqlauca_27879;
+GRANT UNLIMITED TABLESPACE TO shema_plsqlauca_27879;
 ```
 
 ### Step8: Verify User Creation
 ```sql
 SELECT username, created, account_status 
 FROM dba_users 
-WHERE username = 'SHEMA_PLSQLACUA_27879';
+WHERE username = 'SHEMA_PLSQLAUCA_27879';
 ```
 
 ## Task 1 Screenshots
@@ -85,3 +85,41 @@ WHERE username = 'SHEMA_PLSQLACUA_27879';
 | **2** | **PDB Open State Verification** |`screenshots/task1/02_pdb_open.png`|
 | **3** | **User Creation Inside PDB** |`screenshots/task1/05_create_user.png`|
 | **4** | **User Verification** |`screenshots/task1/07_verification_of_user_creation.png`|
+
+# TASK 2: Create and Delete Temporary PDB
+
+##  Temporary PDB Configuration
+| Attribute | Value |
+|-----------|-------|
+| **PDB Name** | `sh_to_delete_pdb_27879` |
+| **Admin User** | `temp_admin` |
+| **Password** | `temp123` |
+| **Status** | Successfully created and completely deleted |
+
+##  SQL*Plus Commands Executed
+
+### Create Temporary PDB
+```
+ALTER SYSTEM SET DB_CREATE_FILE_DEST = 'C:\APP\SERGE\PRODUCT\21C\ORADATA\XE' SCOPE = BOTH;
+
+CREATE PLUGGABLE DATABASE sh_to_delete_pdb_27879
+ADMIN USER temp_admin IDENTIFIED BY temp123;
+
+ALTER SYSTEM SET DB_CREATE_FILE_DEST = '' SCOPE = BOTH;
+```
+
+### Step 2: Open Temporary PDB
+```
+ALTER PLUGGABLE DATABASE sh_to_delete_pdb_27879 OPEN;
+```
+
+### Step 3: Verify Temporary PDB Exists
+```
+SELECT name, open_mode FROM v$pdbs WHERE name LIKE '%TO_DELETE%';
+```
+
+### Step 4: Close Temporary PDB
+```
+ALTER PLUGGABLE DATABASE sh_to_delete_pdb_27879 CLOSE IMMEDIATE;
+```
+
