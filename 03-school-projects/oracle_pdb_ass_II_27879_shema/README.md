@@ -200,5 +200,25 @@ https://localhost:5500/em
 - CDB status with PDB count visible 
 - Performance charts and alerts
 
-## Tas
+## Task3 Screenshot
 
+| Step | Description | Screenshot |
+|-----------|-------|-------|
+| **1** | **OEM Dashboard Overview** |`screenshots/task2/02_create_temporary_pdb.png`|
+ 
+# CHALLENGES FACED AD SOLUTIONS
+## Challenge 1: File Path Errors(ORA-65005)
+**Issue**: Initial PDB creation failed with error:
+```text
+ORA-65005: missing or invalid file name pattern for file - 
+C:\APP\SERGE\PRODUCT\21C\ORADATA\XE\PDBSEED\SYSTEM01.DBF
+```
+
+### Screenshot Validation
+The OEM dashboard screenshot confirms:
+✅ OEM Accessibility: Successfully accessed via HTTPS on port 5500
+✅ Database Environment: XE CDB running on Windows
+✅ PDB Count: "CDB (2 PDB(s))" visible in status section
+✅ My PDB: sh_pdb_27879 is one of the two PDBs
+✅ User Session: "sys" username visible in top-right corner
+✅ System Status: Database up for 5+ hours with no incidents
