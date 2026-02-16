@@ -80,11 +80,11 @@ WHERE username = 'SHEMA_PLSQLAUCA_27879';
 ## Task 1 Screenshots
 
 | Step | Description | Screenshot |
-|-----------|-------|-------|
-| **1** | **PDB Creation Successful** |`screenshots/task1/01_pdb_creations.png`|
-| **2** | **PDB Open State Verification** |`screenshots/task1/02_pdb_open.png`|
-| **3** | **User Creation Inside PDB** |`screenshots/task1/05_create_user.png`|
-| **4** | **User Verification** |`screenshots/task1/07_verification_of_user_creation.png`|
+|------|------------|------------|
+| **1** | **PDB Creation Successful** | ![Step 1](screenshots/task1/01_pdb_creations.png) |
+| **2** | **PDB Open State Verification** | ![Step 2](screenshots/task1/02_pdb_open.png) |
+| **3** | **User Creation Inside PDB** | ![Step 3](screenshots/task1/05_create_user.png) |
+| **4** | **User Verification** | ![Step 4](screenshots/task1/07_verification_of_user_creation.png) |
 
 # TASK 2: Create and Delete Temporary PDB
 
@@ -138,11 +138,11 @@ SELECT name FROM v$pdbs WHERE name LIKE '%TO_DELETE%';
 ## Task 2 Screenshots
 
 | Step | Description | Screenshot |
-|-----------|-------|-------|
-| **1** | **Temporary PDB Creation** |`screenshots/task2/02_create_temporary_pdb.png`|
-| **2** | **Verification PDB Exists** |`screenshots/task2/05_verify_if_it_exists.png`|
-| **3** | **PDB Deletion Command** |`screenshots/task2/07_delete_it_completly.png`|
-| **4** | **Verification PDB Deleted** |`screenshots/task2/08_verify_deletion`|
+|------|------------|------------|
+| **1** | **Temporary PDB Creation** | ![Step 1](screenshots/task2/02_create_temporary_pdb.png) |
+| **2** | **Verification PDB Exists** | ![Step 2](screenshots/task2/05_verify_if_it_exists.png) |
+| **3** | **PDB Deletion Command** | ![Step 3](screenshots/task2/07_delete_it_completly.png) |
+| **4** | **Verification PDB Deleted** | ![Step 4](screenshots/task2/08_verify_deletion.png) |
 
 
 # Task3: Oracle Enterprise Manager(OEM)
@@ -204,7 +204,7 @@ https://localhost:5500/em
 
 | Step | Description | Screenshot |
 |-----------|-------|-------|
-| **1** | **OEM Dashboard Overview** |`screenshots/task2/02_create_temporary_pdb.png`|
+| **1** | **OEM Dashboard Overview** |![Create Temporary PDB](screenshots/task2/02_create_temporary_pdb.png)|
  
 # CHALLENGES FACED AD SOLUTIONS
 ## Challenge 1: File Path Errors(ORA-65005)
@@ -260,10 +260,12 @@ This conformed PDB name and username without permission issues.
 
 
 ### Screenshot Validation
+
 The OEM dashboard screenshot confirms:
-✅ OEM Accessibility: Successfully accessed via HTTPS on port 5500
-✅ Database Environment: XE CDB running on Windows
-✅ PDB Count: "CDB (2 PDB(s))" visible in status section
-✅ My PDB: sh_pdb_27879 is one of the two PDBs
-✅ User Session: "sys" username visible in top-right corner
-✅ System Status: Database up for 5+ hours with no incidents
+
+- ✅ OEM Accessibility: Successfully accessed via HTTPS on port 5500  
+- ✅ Database Environment: XE CDB running on Windows  
+- ✅ PDB Count: "CDB (2 PDB(s))" visible in status section  
+- ✅ My PDB: sh_pdb_27879 is one of the two PDBs  
+- ✅ User Session: "SYS" username visible in top-right corner  
+- ✅ System Status: Database up for 5+ hours with no incidents
