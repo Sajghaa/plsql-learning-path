@@ -3,7 +3,7 @@
 ## Student Information
 | Field | Value |
 |-------|-------|
-| **Name** | Shema |
+| **Name** | Shema Serge |
 | **Student ID** | 27879 |
 | **Course** | Database Development with PL/SQL (INSY 8311) |
 | **Instructor** | Eric Maniraguha |
@@ -133,4 +133,72 @@ DROP PLUGGABLE DATABASE sh_to_delete_pdb_27879 INCLUDING DATAFILES;
 SELECT name FROM v$pdbs WHERE name LIKE '%TO_DELETE%';
 -- Expected: "no rows selected"
 ```
+
+
+## Task 2 Screenshots
+
+| Step | Description | Screenshot |
+|-----------|-------|-------|
+| **1** | **Temporary PDB Creation** |`screenshots/task2/02_create_temporary_pdb.png`|
+| **2** | **Verification PDB Exists** |`screenshots/task2/05_verify_if_it_exists.png`|
+| **3** | **PDB Deletion Command** |`screenshots/task2/07_delete_it_completly.png`|
+| **4** | **Verification PDB Deleted** |`screenshots/task2/08_verify_deletion`|
+
+
+# Task3: Oracle Enterprise Manager(OEM)
+##  OEM Configuration
+| Attribute | Value |
+|-----------|-------|
+| **OEM URL** | `https://localhost:5500/em` |
+| **Username** | `sys`(SYSDBA) |
+| **Password** | `Oracle123` |
+| **Port** | 5500 |
+| **Connection Type** | HTTPS with self-signed certificate |
+| **Status** | Successfully configured and accessible |
+
+# OEM Dashboard Overview
+The Oracle Enterprise Manager dashboard provides comprehensive monitoring and management of the oracle environment.
+
+### Database Instance Information
+- **Database Name**: XE
+- **Type**: Single Instance(Express Edition)
+- **Version**: 21.3.0.0.0
+- **Platform**: Microsoft Windows x86 64-bit
+- **Uptime**: 5+ hours (Operational since last restart)
+- **CDB Status**: Container Database with 2 Pluggable Databases
+
+## Pluggable Database
+The CDB contains the following PDBs:
+1. **PDB$SEED** - Default seed template
+2. **SH_PDB_** - User-created PDB for this assignment
+
+## Performance Metrics
+The OEM dashboard displays:
+- System activity and services
+- Resource utilization
+- SQL monitoring
+- Incidents  and alerts(none reported)
+
+## OEM Access Process
+### Step1: Verify OEM is Running
+```bash
+lsnrctl status
+```
+Output confirms port 5500 is active for HTTPs connections. 
+### Step2: Access OEM via Browser
+```text
+https://localhost:5500/em
+```
+### Step3: Login Credentials
+- Username: **sys**
+- Password: **Oracle123**
+- Connect AS: **SYSDBA**
+- Container Name: (leave blank)
+
+### Step4: Navigate Dashboard
+- Home page shows database summary
+- CDB status with PDB count visible 
+- Performance charts and alerts
+
+## Tas
 
