@@ -24,3 +24,18 @@ A professional portfolio demonstrating mastery of analytical SQL through real-wo
 - /window-functions # One subfolder per category
 - /analysis # Business insights & recommendations
 - /assets # ER diagrams, result screenshots
+
+
+## Technical Stack
+- **Database**: Oracle 19c/21c
+- **Tools**: SQL Developer, Git
+- **Version**: 1.0 (February 2026)
+
+## Quick Start
+```sql
+-- Clone understanding, not just code
+-- Each query tells a business story
+-- Read in this order:
+-- 1. docs/business-problem.md
+-- 2. schema/01_business_rules.sql
+-- 3. joins/ (start with 01_inner_join.sql)
