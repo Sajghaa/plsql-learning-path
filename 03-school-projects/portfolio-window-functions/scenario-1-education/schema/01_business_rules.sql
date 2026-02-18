@@ -84,3 +84,8 @@ CREATE TABLE enrollments(
     CONSTRAINT uniq_student_course_semester
          UNIQUE (student_id, course_id, semester)
 );
+
+COMMENT ON TABLE enrollments IS 'Transactional record of student course activity';
+COMMENT ON COLUMN enrollments.grade IS 'NULL =  in progress, 0-100 = final grade';
+COMMENT ON COLUMN enrollments.drop_date IS 'Populated only if status = DROPPED';
+COMMENT ON COLUMN enrollments.semester IS 'Format: FALL2025, SPRING 2026, SUMMER2026';
