@@ -46,3 +46,9 @@ CREATE TABLE students (
     CONSTRAINT chk_enrollment_date
            CHECK (enrollment_date <= SYSDATE)
 );
+
+COMMENT ON TABLE students IS 'Main student demographic and status tracking';
+COMMENT ON COLUMN students.student_id IS 'Surrogate key, generated from sequence';
+COMMENT ON COLUMN students.email IS 'Primary communication channel, must be unique';
+COMMENT ON COLUMN students.status IS 'Current academic standing';
+COMMENT ON COLUMN students.last_activity_date IS 'Last login or interaction with system';
