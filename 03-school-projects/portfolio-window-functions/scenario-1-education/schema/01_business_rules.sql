@@ -52,3 +52,35 @@ COMMENT ON COLUMN students.student_id IS 'Surrogate key, generated from sequence
 COMMENT ON COLUMN students.email IS 'Primary communication channel, must be unique';
 COMMENT ON COLUMN students.status IS 'Current academic standing';
 COMMENT ON COLUMN students.last_activity_date IS 'Last login or interaction with system';
+
+
+-- TABLE: enrollments
+-- Purpose: Fact table linking students to courses
+-- Business Rules:
+--              - Grade NULL means in progress (business meaning)
+--              - Status tracks enrollment lifecycle
+--              - Cannot enroll in same course twice in same semester
+
+CREATE TABLE enrollments(
+    enrollment_id NUMBER PRIMARY KEY,
+    student_id NUMBER NOT NULL,
+    course_id NUMBER NOT NULL, 
+    semester VARCHAR2(10) NOT NULL,
+    enrollment_date DATE NOT NULL,
+    grade NUMBER(3,1) NULL,
+    status VARCHAR2(20) DEFAULT 'ENROLLED' NOT NULL,
+    drop_date DATE NULL,
+    created_date DATE DEFAULT SYSDATE,
+
+    CONSTRAINT fk_enrollments_student
+         FOREIGN KEY (student_id) REFERENCES students(student_id),
+    CONSTRAINT fk_enrollments_course
+         FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    CONSTRAINT chk_enrollment_status
+         CHECK (status in ('ENROLLED', 'DROPPED', 'COMPLETED', 'WITHDRAW')),
+    CONSTRAINT chk_grade_range
+         CHECK (grade BETWEEN 0 AND 100),
+    -- Business rule: No duplicated enrollments
+    CONSTRAINT uniq_student_course_semester
+         UNIQUE (student_id, course_id, semester)
+);
