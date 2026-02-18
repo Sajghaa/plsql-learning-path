@@ -89,3 +89,8 @@ COMMENT ON TABLE enrollments IS 'Transactional record of student course activity
 COMMENT ON COLUMN enrollments.grade IS 'NULL =  in progress, 0-100 = final grade';
 COMMENT ON COLUMN enrollments.drop_date IS 'Populated only if status = DROPPED';
 COMMENT ON COLUMN enrollments.semester IS 'Format: FALL2025, SPRING 2026, SUMMER2026';
+
+CREATE INDEX idx_enrollments_student ON enrollments(student_id);
+CREATE INDEX idx_enrollments_course ON enrollments(course_id);
+CREATE INDEX idx_enrollments_semester ON enrollments(semester);
+CREATE INDEX idx_enrollments_status ON enrollments(status);
