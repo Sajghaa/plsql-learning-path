@@ -54,6 +54,35 @@ COMMENT ON COLUMN students.status IS 'Current academic standing';
 COMMENT ON COLUMN students.last_activity_date IS 'Last login or interaction with system';
 
 
+
+-- TABLE : courses
+-- Purpose: Course catalog with department classification
+-- Business Rules:
+--              - Credits between 1-5(academic policy)
+--              - Course code format: 2-4 letters + numbers (e.g, CS101)
+--              - Department must be valid list
+
+CREATE TABLE courses (
+     course_id NUMBER PRIMARY KEY,
+     course_code VARCHAR2(10) UNIQUE NOT NULL,
+     course_name VARCHAR2(100) NOT NULL,
+     credits NUMBER(1) NOT NULL,
+     department VARCHAR2(50) NOT NULL,
+     is_active CHAR(1) DEFAULT 'Y' NOT NULL,
+     created_date DATE DEFAULT SYSDATE,
+
+     CONSTRAINT chk_credits
+          CHECK (credits BETWEEN 1 AND 5),
+     CONSTRAINT chk_department
+          CHECK (department IN ('CS', 'Data Science', 'Business', 'Engineering', 'Mathematics')),
+     CONSTRAINT chk_is_active
+          CHECK (is_active IN ('Y', 'N')) 
+);
+
+COMMENT ON TABLE courses IS 'Course catalog with department classification';
+COMMENT ON COLUMN courses.course_code IS 'Business identifier, e.g, CS101';
+COMMENT ON COLUMN courses.is_active IS 'Y = currently offered, N = discontinued';
+
 -- TABLE: enrollments
 -- Purpose: Fact table linking students to courses
 -- Business Rules:
@@ -95,30 +124,14 @@ CREATE INDEX idx_enrollments_course ON enrollments(course_id);
 CREATE INDEX idx_enrollments_semester ON enrollments(semester);
 CREATE INDEX idx_enrollments_status ON enrollments(status);
 
--- TABLE : courses
--- Purpose: Course catalog with department classification
--- Business Rules:
---              - Credits between 1-5(academic policy)
---              - Course code format: 2-4 letters + numbers (e.g, CS101)
---              - Department must be valid list
 
-CREATE TABLE courses (
-     course_id NUMBER PRIMARY KEY,
-     course_code VARCHAR2(10) UNIQUE NOT NULL,
-     course_name VARCHAR2(100) NOT NULL,
-     credits NUMBER(1) NOT NULL,
-     department VARCHAR2(50) NOT NULL,
-     is_active CHAR(1) DEFAULT 'Y' NOT NULL,
-     created_date DATE DEFAULT SYSDATE,
-
-     CONSTRAINT chk_credits
-          CHECK (credits BETWEEN 1 AND 5),
-     CONSTRAINT chk_department
-          CHECK (department IN ('CS', 'Data Science', 'Business', 'Engineering', 'Mathematics')),
-     CONSTRAINT chk_is_active
-          CHECK (is_active IN ('Y', 'N')) 
+CREATE TABLE enrollments_audit (
+     audit_id NUMBER PRIMARY KEY,
+     enrollment_id NUMBER,
+     old_grade NUMBER(3, 1),
+     new_grade NUMBER(3,1),
+     changed_by VARCHAR2(50),
+     change_date DATE DEFAULT SYSDATE
 );
 
-COMMENT ON TABLE courses IS 'Course catalog with department classification';
-COMMENT ON COLUMN courses.course_code IS 'Business identifier, e.g, CS101';
-COMMENT ON COLUMN courses.is_active IS 'Y = currently offered, N = discontinued';
+COMMENT ON TABLE enrollments_audit IS 'Track grade changes for compliance';
